@@ -3,6 +3,8 @@
 #define __BCOMP_MAXRANGE__ 50001
 #define GRAVITY (-32.194)
 #include <math.h>
+#include <map>
+#include "range_data.h"
 
 double apply_drag(int drag_function, double ballistic_coefficient, double velocity);
 
@@ -25,6 +27,6 @@ int compute_range_table(
 		double zero_angle,
 		double wind_velocity,
 		double wind_angle,
-		double** table
+		std::map<int, RangeData> &range_table
 		);
 #endif

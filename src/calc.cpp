@@ -1,6 +1,8 @@
 #include <iostream>
+#include <map>
 #include "calc.h"
 #include "conversions.h"
+#include "range_data.h"
 
 using namespace std;
 
@@ -150,11 +152,8 @@ int compute_range_table(
 		double zero_angle,
 		double wind_velocity,
 		double wind_angle,
-		double** range_table) // TODO: Refactor into an array of some hash of { yardage => data } or something
+		std::map<int, RangeData> &range_table) // TODO: Refactor into an array of some hash of { yardage => data } or something
 {
-	double* ptr;
-	ptr = (double*)malloc(10*__BCOMP_MAXRANGE__*sizeof(double)+2048);
-
 	double t = 0;
 	double dt = 0.5 / velocity;
 	double v = 0;
@@ -186,18 +185,24 @@ int compute_range_table(
 		vx = vx + dt*dvx + dt * Gx;
 		vy = vy + dt*dvy + dt * Gy;
 
-		if (x / 3 >= n)  // if yardage is >= n
+		double yardage = x / 3;
+
+		if (yardage >= n)
 		{
-			ptr[10*n+0] = x / 3; 						// range in yards
-			ptr[10*n+1] = y * 12;						// path in inches
-			ptr[10*n+2] = -radian_to_moa(atan(y / x));	// Correction in MOA
-			ptr[10*n+3] = t * dt;						// Time in seconds
-			ptr[10*n+4] = calculate_windage(crosswind, velocity, x, t+dt); // Windage in inches
-			ptr[10*n+5] = radian_to_moa(atan((ptr[10*n+4] / 12) / (ptr[10*n+0] * 3))); // Windage in MOA
-			ptr[10*n+6] = velocity; 						// Velocity (combined)
-			ptr[10*n+7] = vx;								// Velocity (x)
-			ptr[10*n+8] = vy;								// Velocity (y)
-			ptr[10*n+9] = 0;								// Reserved
+			double windage = calculate_windage(crosswind, velocity, x, t+dt);
+
+			RangeData data (
+					yardage,
+				  	y * 12,
+				  	-radian_to_moa(atan(y / x)),
+				  	t * dt,
+				  	windage,
+					radian_to_moa(atan((windage / 12) / (yardage * 3))),
+					velocity,
+					vx,
+					vy
+ 					);
+ 			range_table.insert(make_pair(yardage, data));
 			n++;
 		}
 
@@ -207,10 +212,6 @@ int compute_range_table(
 		if (fabs(vy) > fabs(3*vx)) break;
 		if (n >= __BCOMP_MAXRANGE__+1) break;
 	}
-
-	ptr[10*__BCOMP_MAXRANGE__+1] = (double)n;
-
-	*range_table = ptr;
 
 	return n;
 }
