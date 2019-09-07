@@ -25,6 +25,6 @@ clean:
 
 # Tests
 tester:
-	$(CC) $(CFLAGS) -I /usr/local//boost_1_62_0 build/calc.o build/conversions.o test/unit_test.cpp $(INC) $(LIB) -o bin/tester
+	$(CC) $(CFLAGS) -I /usr/local//boost_1_62_0 build/range_data.o build/calc.o build/conversions.o test/calc_test.cpp $(INC) $(LIB) -o bin/tester
 
 .PHONY: clean

@@ -28,11 +28,11 @@ int main()
 
 	// No atmospheric adjustments rn
 
-	cout.precision(2);
 
 	map<int, RangeData> range_table = calculate_range_table(drag_function, ballistic_coefficient, velocity, sight_height, shooting_angle, zero_range, wind_velocity, wind_angle);
 
 	cout << "\nYardage | MOA Adjustment | Windage" << endl;
+	cout.precision(2);
 	for (int i = 100; i <= 1000; i += 100)
 	{
 		print_data_at_range(range_table, i);

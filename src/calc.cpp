@@ -93,9 +93,9 @@ double calculate_zero_angle(
 			v = pow((pow(vx,2) + pow(vy,2)), 0.5);
 			dt = 1 / v;
 
-			dv = apply_drag(drag_function, ballistic_coefficient, v);
-			dvy = -dv*vy/v*dt;
-			dvx = -dv*vx/v*dt;
+			velocity_delta = apply_drag(drag_function, ballistic_coefficient, v);
+			dvy = - velocity_delta * vy / v * dt;
+			dvx = - velocity_delta * vx / v * dt;
 
 			vx += dvx;
 			vy += dvy;
