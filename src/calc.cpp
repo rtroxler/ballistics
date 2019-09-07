@@ -143,23 +143,29 @@ double calculate_windage(double wind_velocity, double velocity, double x, double
 	return (vx * (t - x / velocity));
 }
 
-int compute_range_table(
+std::map<int, RangeData> calculate_range_table(
 		int drag_function,
 		double ballistic_coefficient,
 		double velocity,
 		double sight_height,
 		double shooting_angle,
-		double zero_angle,
+		double zero_range,
 		double wind_velocity,
-		double wind_angle,
-		std::map<int, RangeData> &range_table) // TODO: Refactor into an array of some hash of { yardage => data } or something
+		double wind_angle)
 {
+	map<int, RangeData> range_table;
+
+
 	double t = 0;
 	double dt = 0.5 / velocity;
 	double v = 0;
 	double vx = 0, vx1 = 0, vy = 0, vy1 = 0;
 	double dv = 0, dvx = 0, dvy = 0;
 	double x = 0, y = 0;
+
+	// Find the zero angle of the bore relative to the sighting system.
+	double zero_angle = calculate_zero_angle(drag_function, ballistic_coefficient, velocity,
+			sight_height, zero_range, 0);
 
 	double headwind = calculate_headwind(wind_velocity, wind_angle);
 	double crosswind = calculate_crosswind(wind_velocity, wind_angle);
@@ -213,7 +219,5 @@ int compute_range_table(
 		if (n >= __BCOMP_MAXRANGE__+1) break;
 	}
 
-	return n;
+	return range_table;
 }
-
-

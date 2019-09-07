@@ -18,15 +18,14 @@ double calculate_zero_angle(
 
 double atmosphere_adjustment(double ballistic_coefficient, double altitude, double barometer, double temp, double relative_humidity);
 
-int compute_range_table(
+std::map<int, RangeData> calculate_range_table(
 		int drag_function,
 		double ballistic_coefficient,
 		double velocity,
 		double sight_height,
 		double shooting_angle,
-		double zero_angle,
+		double zero_range,
 		double wind_velocity,
-		double wind_angle,
-		std::map<int, RangeData> &range_table
+		double wind_angle
 		);
 #endif

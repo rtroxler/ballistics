@@ -5,6 +5,15 @@
 #include "range_data.h"
 
 using namespace std;
+
+void print_data_at_range(map<int, RangeData> range_table, int yardage)
+{
+	double moa_adjustment = range_table[yardage].get_moa_correction();
+	double windage_adjustment = range_table[yardage].get_windage_correction();
+
+	cout << yardage << " yd: " << "\t" << fixed << moa_adjustment << "\t\t" << windage_adjustment << endl;
+}
+
 int main()
 {
 	// Hard code some examples for now
@@ -21,24 +30,11 @@ int main()
 
 	cout.precision(2);
 
-	// Find the zero angle of the bore relative to the sighting systme.
-	double zero_angle = calculate_zero_angle(drag_function, ballistic_coefficient, velocity, sight_height, zero_range, 0);
+	map<int, RangeData> range_table = calculate_range_table(drag_function, ballistic_coefficient, velocity, sight_height, shooting_angle, zero_range, wind_velocity, wind_angle);
 
-	map<int, RangeData> range_table;
-	int num_rows = compute_range_table(drag_function, ballistic_coefficient, velocity, sight_height, shooting_angle,
-										zero_angle, wind_velocity, wind_angle, range_table);
-
-	cout << "Let's shoot some shit.\n";
-	cout << "zero angle: " << fixed << zero_angle << endl;
 	cout << "\nYardage | MOA Adjustment | Windage" << endl;
-	cout << "100 yd: " << "\t" << range_table[100].get_moa_correction() << "\t\t" << range_table[100].get_windage_correction() << endl;
-	cout << "200 yd: " << "\t" << range_table[200].get_moa_correction() << "\t\t" << range_table[200].get_windage_correction() << endl;
-	cout << "300 yd: " << "\t" << range_table[300].get_moa_correction() << "\t\t" << range_table[300].get_windage_correction() << endl;
-	cout << "400 yd: " << "\t" << range_table[400].get_moa_correction() << "\t\t" << range_table[400].get_windage_correction() << endl;
-	cout << "500 yd: " << "\t" << range_table[500].get_moa_correction() << "\t\t" << range_table[500].get_windage_correction() << endl;
-	cout << "600 yd: " << "\t" << range_table[600].get_moa_correction() << "\t\t" << range_table[600].get_windage_correction() << endl;
-	cout << "700 yd: " << "\t" << range_table[700].get_moa_correction() << "\t\t" << range_table[700].get_windage_correction() << endl;
-	cout << "800 yd: " << "\t" << range_table[800].get_moa_correction() << "\t\t" << range_table[800].get_windage_correction() << endl;
-	cout << "900 yd: " << "\t" << range_table[900].get_moa_correction() << "\t\t" << range_table[900].get_windage_correction() << endl;
-	cout << "1000 yd: " << "\t" << range_table[1000].get_moa_correction() << "\t\t" << range_table[1000].get_windage_correction() << endl;
+	for (int i = 100; i <= 1000; i += 100)
+	{
+		print_data_at_range(range_table, i);
+	}
 }
