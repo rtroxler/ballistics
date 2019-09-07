@@ -1,0 +1,46 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BOOST_AUTO_TEST_CASE	test/unit_test.cpp	/^BOOST_AUTO_TEST_CASE(zero_angle_G7_2650_100, * utf::tolerance(0.0001))$/;"	f
+BOOST_AUTO_TEST_CASE	test/unit_test.cpp	/^BOOST_AUTO_TEST_CASE(zero_angle_G7_2650_200, * utf::tolerance(0.0001))$/;"	f
+BOOST_AUTO_TEST_CASE	test/unit_test.cpp	/^BOOST_AUTO_TEST_CASE(zero_angle_G7_2800_100_0365, * utf::tolerance(0.0001))$/;"	f
+BOOST_TEST_MODULE	test/unit_test.cpp	1;"	d	file:
+BUILDDIR	Makefile	/^BUILDDIR := build$/;"	m
+CC	Makefile	/^CC := g++ # This is the main compiler$/;"	m
+CFLAGS	Makefile	/^CFLAGS := -g # -Wall$/;"	m
+GRAVITY	src/calc.h	4;"	d
+GetMOA	src/main.cpp	/^double GetMOA(double* sln, int yardage){$/;"	f
+GetPath	src/main.cpp	/^double GetPath(double* sln, int yardage){$/;"	f
+GetRange	src/main.cpp	/^double GetRange(double* sln, int yardage){$/;"	f
+GetTime	src/main.cpp	/^double GetTime(double* sln, int yardage){$/;"	f
+GetVelocity	src/main.cpp	/^double GetVelocity(double* sln, int yardage){$/;"	f
+GetVx	src/main.cpp	/^double GetVx(double* sln, int yardage){$/;"	f
+GetVy	src/main.cpp	/^double GetVy(double* sln, int yardage){$/;"	f
+GetWindage	src/main.cpp	/^double GetWindage(double* sln, int yardage){$/;"	f
+GetWindageMOA	src/main.cpp	/^double GetWindageMOA(double* sln, int yardage){$/;"	f
+INC	Makefile	/^INC := -I include$/;"	m
+LIB	Makefile	/^LIB := #-pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt$/;"	m
+OBJECTS	Makefile	/^OBJECTS := $(patsubst $(SRCDIR)\/%,$(BUILDDIR)\/%,$(SOURCES:.$(SRCEXT)=.o))$/;"	m
+SOURCES	Makefile	/^SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))$/;"	m
+SRCDIR	Makefile	/^SRCDIR := src$/;"	m
+SRCEXT	Makefile	/^SRCEXT := cpp$/;"	m
+TARGET	Makefile	/^TARGET := bin\/ballistics$/;"	m
+__BCOMP_MAXRANGE__	src/calc.h	3;"	d
+apply_drag	src/calc.cpp	/^double apply_drag(int drag_function, double ballistic_coefficient, double velocity)$/;"	f
+calc	src/calc.h	2;"	d
+calculate_crosswind	src/calc.cpp	/^double calculate_crosswind(double wind_velocity, double wind_angle)$/;"	f
+calculate_headwind	src/calc.cpp	/^double calculate_headwind(double wind_velocity, double wind_angle)$/;"	f
+calculate_windage	src/calc.cpp	/^double calculate_windage(double wind_velocity, double velocity, double x, double t)$/;"	f
+calculate_zero_angle	src/calc.cpp	/^double calculate_zero_angle($/;"	f
+compute_range_table	src/calc.cpp	/^int compute_range_table($/;"	f
+conversions	src/conversions.h	2;"	d
+degree_to_moa	src/conversions.cpp	/^double degree_to_moa(double degree)$/;"	f
+degree_to_radian	src/conversions.cpp	/^double degree_to_radian(double degree)$/;"	f
+main	src/main.cpp	/^int main()$/;"	f
+moa_to_degree	src/conversions.cpp	/^double moa_to_degree(double moa)$/;"	f
+moa_to_radian	src/conversions.cpp	/^double moa_to_radian(double moa)$/;"	f
+radian_to_degree	src/conversions.cpp	/^double radian_to_degree(double radian)$/;"	f
+radian_to_moa	src/conversions.cpp	/^double radian_to_moa(double radian)$/;"	f
