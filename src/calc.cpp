@@ -12,16 +12,76 @@ double apply_drag(int drag_function, double ballistic_coefficient, double veloci
 	double M=-1;
 	// Assuming G7 for now, since that's all I will use
 	// Build a better way to do this for all other drag functions
-	if (velocity > 4200 ) { A = 1.29081656775919e-09; M = 3.24121295355962; }
-	else if (velocity > 3000 ) { A = 0.0171422231434847  ; M = 1.27907168025204; }
-	else if (velocity > 1470 ) { A = 2.33355948302505e-03; M = 1.52693913274526; }
-	else if (velocity > 1260 ) { A = 7.97592111627665e-04; M = 1.67688974440324; }
-	else if (velocity > 1110 ) { A = 5.71086414289273e-12; M = 4.3212826264889 ; }
-	else if (velocity >  960 ) { A = 3.02865108244904e-17; M = 5.99074203776707; }
-	else if (velocity >  670 ) { A = 7.52285155782535e-06; M = 2.1738019851075 ; }
-	else if (velocity >  540 ) { A = 1.31766281225189e-05; M = 2.08774690257991; }
-	else if (velocity >    0 ) { A = 1.34504843776525e-05; M = 2.08702306738884; }
 
+	switch(DragFunction) {
+		case G1:
+			if (velocity > 4230)            { A = 1.477404177730177e-04; M = 1.9565; }
+			else if (velocity > 3680) { A = 1.920339268755614e-04; M = 1.925 ; }
+			else if (velocity > 3450) { A = 2.894751026819746e-04; M = 1.875 ; }
+			else if (velocity > 3295) { A = 4.349905111115636e-04; M = 1.825 ; }
+			else if (velocity > 3130) { A = 6.520421871892662e-04; M = 1.775 ; }
+			else if (velocity > 2960) { A = 9.748073694078696e-04; M = 1.725 ; }
+			else if (velocity > 2830) { A = 1.453721560187286e-03; M = 1.675 ; }
+			else if (velocity > 2680) { A = 2.162887202930376e-03; M = 1.625 ; }
+			else if (velocity > 2460) { A = 3.209559783129881e-03; M = 1.575 ; }
+			else if (velocity > 2225) { A = 3.904368218691249e-03; M = 1.55  ; }
+			else if (velocity > 2015) { A = 3.222942271262336e-03; M = 1.575 ; }
+			else if (velocity > 1890) { A = 2.203329542297809e-03; M = 1.625 ; }
+			else if (velocity > 1810) { A = 1.511001028891904e-03; M = 1.675 ; }
+			else if (velocity > 1730) { A = 8.609957592468259e-04; M = 1.75  ; }
+			else if (velocity > 1595) { A = 4.086146797305117e-04; M = 1.85  ; }
+			else if (velocity > 1520) { A = 1.954473210037398e-04; M = 1.95  ; }
+			else if (velocity > 1420) { A = 5.431896266462351e-05; M = 2.125 ; }
+			else if (velocity > 1360) { A = 8.847742581674416e-06; M = 2.375 ; }
+			else if (velocity > 1315) { A = 1.456922328720298e-06; M = 2.625 ; }
+			else if (velocity > 1280) { A = 2.419485191895565e-07; M = 2.875 ; }
+			else if (velocity > 1220) { A = 1.657956321067612e-08; M = 3.25  ; }
+			else if (velocity > 1185) { A = 4.745469537157371e-10; M = 3.75  ; }
+			else if (velocity > 1150) { A = 1.379746590025088e-11; M = 4.25  ; }
+			else if (velocity > 1100) { A = 4.070157961147882e-13; M = 4.75  ; }
+			else if (velocity > 1060) { A = 2.938236954847331e-14; M = 5.125 ; }
+			else if (velocity > 1025) { A = 1.228597370774746e-14; M = 5.25  ; }
+			else if (velocity >  980) { A = 2.916938264100495e-14; M = 5.125 ; }
+			else if (velocity >  945) { A = 3.855099424807451e-13; M = 4.75  ; }
+			else if (velocity >  905) { A = 1.185097045689854e-11; M = 4.25  ; }
+			else if (velocity >  860) { A = 3.566129470974951e-10; M = 3.75  ; }
+			else if (velocity >  810) { A = 1.045513263966272e-08; M = 3.25  ; }
+			else if (velocity >  780) { A = 1.291159200846216e-07; M = 2.875 ; }
+			else if (velocity >  750) { A = 6.824429329105383e-07; M = 2.625 ; }
+			else if (velocity >  700) { A = 3.569169672385163e-06; M = 2.375 ; }
+			else if (velocity >  640) { A = 1.839015095899579e-05; M = 2.125 ; }
+			else if (velocity >  600) { A = 5.71117468873424e-05 ; M = 1.950 ; }
+			else if (velocity >  550) { A = 9.226557091973427e-05; M = 1.875 ; }
+			else if (velocity >  250) { A = 9.337991957131389e-05; M = 1.875 ; }
+			else if (velocity >  100) { A = 7.225247327590413e-05; M = 1.925 ; }
+			else if (velocity >   65) { A = 5.792684957074546e-05; M = 1.975 ; }
+			else if (velocity >    0) { A = 5.206214107320588e-05; M = 2.000 ; }
+			break;
+
+		case G7:
+			if (velocity > 4200 )      { A = 1.29081656775919e-09; M = 3.24121295355962; }
+			else if (velocity > 3000 ) { A = 0.0171422231434847  ; M = 1.27907168025204; }
+			else if (velocity > 1470 ) { A = 2.33355948302505e-03; M = 1.52693913274526; }
+			else if (velocity > 1260 ) { A = 7.97592111627665e-04; M = 1.67688974440324; }
+			else if (velocity > 1110 ) { A = 5.71086414289273e-12; M = 4.3212826264889 ; }
+			else if (velocity >  960 ) { A = 3.02865108244904e-17; M = 5.99074203776707; }
+			else if (velocity >  670 ) { A = 7.52285155782535e-06; M = 2.1738019851075 ; }
+			else if (velocity >  540 ) { A = 1.31766281225189e-05; M = 2.08774690257991; }
+			else if (velocity >    0 ) { A = 1.34504843776525e-05; M = 2.08702306738884; }
+			break;
+
+		case G8:
+			if (velocity > 3571 )      { A = .0112263766252305   ; M = 1.33207346655961; }
+			else if (velocity > 1841 ) { A = .0167252613732636   ; M = 1.28662041261785; }
+			else if (velocity > 1120 ) { A = 2.20172456619625e-03; M = 1.55636358091189; }
+			else if (velocity > 1088 ) { A = 2.0538037167098e-16 ; M = 5.80410776994789; }
+			else if (velocity >  976 ) { A = 5.92182174254121e-12; M = 4.29275576134191; }
+			else if (velocity >    0 ) { A = 4.3917343795117e-05 ; M = 1.99978116283334; }
+			break;
+
+		default:
+			break;
+	}
 	if (A!=-1 && M!=-1 && velocity >0 && velocity <10000){
 		double val = A * pow(velocity, M) / ballistic_coefficient;
 		return val;
@@ -51,19 +111,17 @@ double calculate_zero_angle(
 		double zero_range,
 		double y_intercept)
 {
-	// Integration values
-	double t = 0;
-
-	double dt = 1 / initial_velocity;
+	double time_delta = 1 / initial_velocity;
 	double y = -sight_height / 12;
 	double x = 0;
-	double angular_delta; // The change in bore angle used to iterate over to approximate the correct zero angle
+	double angular_delta; 		// The change in bore angle used to iterate over to approximate the correct zero angle
 
 	// State variables for each loop
-	double v=0, vx=0, vy=0; // velocity
-	double vx1=0, vy1=0; // Last frame's velocity, used for computing average velocity
-	double dv=0, dvx=0, dvy=0; // change in acceleration
-	double Gx=0, Gy=0; // Gravitational acceleration
+	double t = 0; 				// time in seconds
+	double v=0, vx=0, vy=0; 	// velocity variables
+	double vx1=0, vy1=0; 		// Last frame's velocity, used for computing average velocity
+	double dv=0, dvx=0, dvy=0;  // change in acceleration
+	double Gx=0, Gy=0; 			// Gravitational acceleration
 
 	double angle = 0; // Angle of the bore return value
 
@@ -86,30 +144,30 @@ double calculate_zero_angle(
 		Gy=GRAVITY*cos(angle);
 
 
-		for (t = 0, x = 0, y = -sight_height / 12; x <= zero_range*3; t += dt)
+		for (t = 0, x = 0, y = -sight_height / 12; x <= zero_range*3; t += time_delta)
 		{
 			vx1 = vx;
 			vy1 = vy;
 			v = pow((pow(vx,2) + pow(vy,2)), 0.5);
-			dt = 1 / v;
+			time_delta = 1 / v;
 
 			velocity_delta = apply_drag(drag_function, ballistic_coefficient, v);
-			dvy = - velocity_delta * vy / v * dt;
-			dvx = - velocity_delta * vx / v * dt;
+			dvy = - velocity_delta * vy / v * time_delta;
+			dvx = - velocity_delta * vx / v * time_delta;
 
 			vx += dvx;
 			vy += dvy;
-			vy += dt*Gy;
-			vx += dt*Gx;
+			vy += time_delta * Gy;
+			vx += time_delta * Gx;
 
-			x = x+dt * (vx+vx1) / 2;
-			y = y+dt * (vy+vy1) / 2;
+			x = x + time_delta * (vx+vx1) / 2;
+			y = y + time_delta * (vy+vy1) / 2;
 
 			// Break early to save CPU time if we won't find a solution.
-			if (vy<0 && y < y_intercept) {
+			if (vy < 0 && y < y_intercept) {
 				break;
 			}
-			if (vy>3*vx) {
+			if (vy > 3 * vx) {
 				break;
 			}
 		}
@@ -155,9 +213,8 @@ std::map<int, RangeData> calculate_range_table(
 {
 	map<int, RangeData> range_table;
 
-
 	double t = 0;
-	double dt = 0.5 / velocity;
+	double delta_time = 0.5 / velocity;
 	double v = 0;
 	double vx = 0, vx1 = 0, vy = 0, vy1 = 0;
 	double dv = 0, dvx = 0, dvy = 0;
@@ -178,30 +235,30 @@ std::map<int, RangeData> calculate_range_table(
 
 	y = -sight_height / 12;
 	int n = 0;
-	for ( t = 0 ;; t += dt ) // time in seconds + delta each loop
+	for ( t = 0 ;; t += delta_time ) // time in seconds + delta each loop
 	{
 		vx1 = vx, vy1 = vy;
 		v = pow(pow(vx, 2) + pow(vy, 2), 0.5);
-		dt = 0.5 / v;
+		delta_time = 0.5 / v;
 
 		dv = apply_drag(drag_function, ballistic_coefficient, v + headwind);
 		dvx = -(vx / velocity) * dv;
 		dvy = -(vy / velocity) * dv;
 
-		vx = vx + dt*dvx + dt * Gx;
-		vy = vy + dt*dvy + dt * Gy;
+		vx = vx + delta_time * dvx + delta_time * Gx;
+		vy = vy + delta_time * dvy + delta_time * Gy;
 
 		double yardage = x / 3;
 
 		if (yardage >= n)
 		{
-			double windage = calculate_windage(crosswind, velocity, x, t+dt);
+			double windage = calculate_windage(crosswind, velocity, x, t + delta_time);
 
 			RangeData data (
 					yardage,
 				  	y * 12,
 				  	-radian_to_moa(atan(y / x)),
-				  	t * dt,
+				  	t * delta_time,
 				  	windage,
 					radian_to_moa(atan((windage / 12) / (yardage * 3))),
 					velocity,
@@ -212,11 +269,11 @@ std::map<int, RangeData> calculate_range_table(
 			n++;
 		}
 
-		x = x + dt * (vx + vx1) / 2;
-		y = y + dt * (vy + vy1) / 2;
+		x = x + delta_time * (vx + vx1) / 2;
+		y = y + delta_time * (vy + vy1) / 2;
 
 		if (fabs(vy) > fabs(3*vx)) break;
-		if (n >= __BCOMP_MAXRANGE__+1) break;
+		if (n >= __MAXRANGE__+1) break;
 	}
 
 	return range_table;

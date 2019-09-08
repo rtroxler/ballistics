@@ -1,6 +1,6 @@
 #ifndef calc
 #define calc
-#define __BCOMP_MAXRANGE__ 50001
+#define __MAXRANGE__ 5000
 #define GRAVITY (-32.194)
 #include <math.h>
 #include <map>
