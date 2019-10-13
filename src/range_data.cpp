@@ -18,6 +18,11 @@ double RangeData::get_moa_correction()
 	return moa_correction;
 }
 
+double RangeData::get_mil_correction()
+{
+	return moa_correction / 3.4377;
+}
+
 double RangeData::get_windage_correction()
 {
 	return windage_moa;

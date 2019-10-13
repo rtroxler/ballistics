@@ -13,8 +13,8 @@ double apply_drag(int drag_function, double ballistic_coefficient, double veloci
 	// Assuming G7 for now, since that's all I will use
 	// Build a better way to do this for all other drag functions
 
-	switch(DragFunction) {
-		case G1:
+	switch(drag_function) {
+		case 1:
 			if (velocity > 4230)            { A = 1.477404177730177e-04; M = 1.9565; }
 			else if (velocity > 3680) { A = 1.920339268755614e-04; M = 1.925 ; }
 			else if (velocity > 3450) { A = 2.894751026819746e-04; M = 1.875 ; }
@@ -58,7 +58,7 @@ double apply_drag(int drag_function, double ballistic_coefficient, double veloci
 			else if (velocity >    0) { A = 5.206214107320588e-05; M = 2.000 ; }
 			break;
 
-		case G7:
+		case 7:
 			if (velocity > 4200 )      { A = 1.29081656775919e-09; M = 3.24121295355962; }
 			else if (velocity > 3000 ) { A = 0.0171422231434847  ; M = 1.27907168025204; }
 			else if (velocity > 1470 ) { A = 2.33355948302505e-03; M = 1.52693913274526; }
@@ -70,7 +70,7 @@ double apply_drag(int drag_function, double ballistic_coefficient, double veloci
 			else if (velocity >    0 ) { A = 1.34504843776525e-05; M = 2.08702306738884; }
 			break;
 
-		case G8:
+		case 8:
 			if (velocity > 3571 )      { A = .0112263766252305   ; M = 1.33207346655961; }
 			else if (velocity > 1841 ) { A = .0167252613732636   ; M = 1.28662041261785; }
 			else if (velocity > 1120 ) { A = 2.20172456619625e-03; M = 1.55636358091189; }
@@ -151,7 +151,7 @@ double calculate_zero_angle(
 			v = pow((pow(vx,2) + pow(vy,2)), 0.5);
 			time_delta = 1 / v;
 
-			velocity_delta = apply_drag(drag_function, ballistic_coefficient, v);
+			double velocity_delta = apply_drag(drag_function, ballistic_coefficient, v);
 			dvy = - velocity_delta * vy / v * time_delta;
 			dvx = - velocity_delta * vx / v * time_delta;
 

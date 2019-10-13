@@ -25,6 +25,7 @@ class RangeData
 	RangeData();
 
 	double get_moa_correction();
+	double get_mil_correction();
 	double get_windage_correction();
 };
 #endif

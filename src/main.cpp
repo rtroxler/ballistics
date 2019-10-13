@@ -9,9 +9,10 @@ using namespace std;
 void print_data_at_range(map<int, RangeData> range_table, int yardage)
 {
 	double moa_adjustment = range_table[yardage].get_moa_correction();
+	double mil_adjustment = range_table[yardage].get_mil_correction();
 	double windage_adjustment = range_table[yardage].get_windage_correction();
 
-	cout << yardage << " yd: " << "\t" << fixed << moa_adjustment << "\t\t" << windage_adjustment << endl;
+	cout << yardage << " yd: " << "\t" << fixed << moa_adjustment << "\t\t" << mil_adjustment << "\t\t" << windage_adjustment << endl;
 }
 
 int main()
@@ -31,7 +32,7 @@ int main()
 
 	map<int, RangeData> range_table = calculate_range_table(drag_function, ballistic_coefficient, velocity, sight_height, shooting_angle, zero_range, wind_velocity, wind_angle);
 
-	cout << "\nYardage | MOA Adjustment | Windage" << endl;
+	cout << "\nYardage | MOA Adjustment | Mil Adjustment  |  Windage" << endl;
 	cout.precision(2);
 	for (int i = 100; i <= 1000; i += 100)
 	{
